@@ -1,0 +1,6 @@
+// skok gdy (Ak)<0
+ROZKAZ SOM;
+czyt wys wei il;
+JEZELI Z TO @ujemne GDY NIE @dodatnie;
+@ujemne wyad wea wel KONIEC;
+@dodatnie wyl wea;

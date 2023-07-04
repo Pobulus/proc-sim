@@ -1,0 +1,11 @@
+// To jest testowy roz-kaz;
+ROZKAZ dod;
+Argumenty 1;
+czyt wys wei il;
+wyad wea;
+czyt wys przep weak il wyl wea; //czytaj z romu i od razu ładuj adres do ramu
+
+czyt wys wea;
+czyt wys weja dod weak wyl wea;
+
+

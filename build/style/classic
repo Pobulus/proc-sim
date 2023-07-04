@@ -1,0 +1,20 @@
+{
+"colors":{
+    "background":[255,255,255],
+    "foreground":[0,0,0],
+
+    "main-background":[2, 84,100],
+    "maszyna-background":[200,200,200],
+    "block-fill":[255,255,255],
+    "outline-normal":[0,0,0],
+    "outline-active":[255,0,0],
+    "btn-bar-background":[139,172,170],
+    "warning-background":[150, 12, 12],
+    "title-background":[236, 248, 249],
+    "title-foreground":[229, 88, 7],
+
+    "file-background":[222, 222, 222],
+    "file-foreground":[22, 22, 22],
+    "file-highlight":[0, 180, 200]
+    }
+}

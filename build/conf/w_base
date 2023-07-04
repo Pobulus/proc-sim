@@ -1,0 +1,328 @@
+{
+"objects":[
+    {"type":"SECTION","name":"root",
+        "pos":[0,-100],
+        "objects":[
+            {"type":"SECTION","name":"buses",
+            "pos":[0,0],
+            "objects":[
+                { "type":"BLOCK","name":"busA",
+                    "size":[1000,0],
+                    "pos":[0,50],
+                    "nodes":{"wej_d":[0,0]},
+                    "signals":["wyl","wea","wyad"]
+                },
+                { "type":"BLOCK","name":"busS",
+                    "size":[1000,0],
+                    "pos":[0,600],
+                    "signals":[
+                        "wys","wes",
+                        "wyak"
+                    ]
+                }
+            ]
+        },
+        {"type":"SECTION","name":"licznik",
+          "pos":[-50,0],
+          "objects":[
+            {"type":"BLOCK","name":"L",
+             "pos":[100,100], "size":[150,40],
+              "nodes":{
+                "wel":[50,0],
+                "wyl":[100,0],
+                "il": [0,15],
+                "wyls":[50,40]
+                }
+             },
+            {"type":"LABEL","name":"L",
+             "pos":[110,100],"text":"L:"
+             },
+            {"type":"FIELD","name":"L",
+             "pos":[140,100],"hook":"L"
+            },
+            {"type":"LABEL","name":"wel",
+             "pos":[75,50],"text":"wel",
+             "signals":"wel", "nodes":{"":[2,1]}
+             },
+            {"type":"LABEL","name":"wyl",
+             "pos":[250,50],"text":"wyl",
+                "signals":"wyl","nodes":{"":[0,1]}
+             },
+              {"type":"LABEL","name":"il",
+             "pos":[40,95],"text":"il",
+                "signals":"il","nodes":{"":[2,1]}
+             },
+            {"type":"NODE","name":"wel_","pos":[150,50]},
+             {"type":"NODE","name":"wyl_","pos":[200,50]},
+            {"type":"NODE","name":"wel","pos":[150,70]},
+             {"type":"NODE","name":"wyl","pos":[200,70]},
+            {"type":"LINK","join":["il@", "L#il"],
+             "horizontal":true,"style":"Pulse","signals":"il"},
+            {"type":"LINK","join":["$wel_", "L#wel"],
+             "horizontal":false, "style":"Arrow","signals":"wel"},
+            {"type":"LINK","join":["L#wyl", "$wyl_"],
+             "horizontal":false, "style":"Arrow","signals":"wyl"},
+            {"type":"LINK","join":["wel@", "$wel"],
+             "horizontal":true, "style":"Arrow","signals":"wel"},
+            {"type":"LINK","join":["wyl@", "$wyl"],
+             "horizontal":true, "style":"Arrow","signals":"wyl"}
+          ]
+        },{"type":"SECTION","name":"wyad_node","pos":[65,0],
+            "objects":[{"type":"NODE", "name":"wyad_","pos":[215,50]}]
+
+        },{"type":"SECTION","name":"REJ_I","pos":[90,0],
+            "objects":[
+                {"type":"BLOCK","name":"I","pos":[50,500],
+                  "size":[150,40],"nodes":{
+                     "wei":[50,40],"wyad":[140,0]
+                    }
+                },{"type":"LABEL","name":"I", "text":"I:","pos":[60,500]},
+                {"type":"LABEL","name":"wei", "text":"wei","pos":[20,550],
+                    "signals":"wei", "nodes":{"":[2,1]}},
+                {"type":"FIELD","name":"I", "hook":"I","pos":[90,500]},
+                {"type":"NODE","name":"wyad","pos":[140,400]},
+                {"type":"NODE","name":"wei","pos":[100,600]},
+                {"type":"NODE","name":"wei_","pos":[100,570]},
+                {"type":"LINK","join":["$wei","I#wei"],
+                    "horizontal":false,"signals":"wei","style":"Arrow"},
+                {"type":"LINK","join":["wei@","$wei_"],
+                    "horizontal":true,"signals":"wei","style":"Pulse"},
+                {"type":"LINK","join":["I#wyad","$wyad"],
+                    "horizontal":true,"signals":"wyad", "style":"None"},
+                {"type":"LINK","join":["$wyad","$wyad_"],
+                    "horizontal":false,"signals":"wyad","style":"Flat"},
+                {"type":"LABEL","name":"wyad", "text":"wyad","pos":[50,375],
+                "signals":"wyad","nodes":{"":[2,1]}},
+                {"type":"LINK","join":["wyad@","$wyad"],
+                    "horizontal":true,"signals":"wyad","style":"Flat"}
+
+            ]
+        },{"type":"SECTION","name":"JAL","pos":[75,0],
+            "objects":[
+                {"type":"BLOCK","name":"JAL","pos":[350,300],
+                "size":[200,200],"nodes":{
+                        "weja":[100,200],
+                        "weak":[0,25],
+                        "dod":[0,65],
+                        "ode":[0,105],
+                        "przep":[0,145],
+                        "wyak":[100,0]
+                    }
+                },{"type":"NODE","name":"weja_","pos":[450,600]
+                },{"type":"LINK","join":["$weja_","JAL#weja"],
+                    "signals":"weja","horizontal":false,
+                    "style":"Arrow"
+                },{"type":"LABEL","name":"weja","pos":[300,525],
+                    "text":"weja","signals":"weja", "nodes":{"":[2,1]}
+                },{"type":"NODE","name":"weja","pos":[452,545]
+                },{"type":"LINK","join":["weja@","$weja"],
+                    "signals":"weja","horizontal":true,
+                    "style":"Pulse"
+                },{"type":"SECTION","name":"JAL_OPS","pos":[-10,0],
+                    "objects":[
+                {"type":"LABEL","name":"weak","pos":[250,305],
+                "text":"weak","signals":"weak", "nodes":{"":[2,1]}},
+                {"type":"LINK","join":["weak@","JAL#weak"],
+                "horizontal":true, "style":"Pulse", "signals":"weak"},
+
+                {"type":"LABEL","name":"dod","pos":[250,345],
+                "text":"dod","signals":"dod", "nodes":{"":[2,1]}},
+                {"type":"LINK","join":["dod@","JAL#dod"],
+                "horizontal":true, "style":"Flat", "signals":"dod"},
+
+                {"type":"LABEL","name":"ode","pos":[250,385],
+                "text":"ode","signals":"ode", "nodes":{"":[2,1]}},
+                {"type":"LINK","join":["ode@","JAL#ode"],
+                "horizontal":true, "style":"Flat", "signals":"ode"},
+
+                {"type":"LABEL","name":"przep","pos":[250,425],
+                "text":"przep","signals":"przep", "nodes":{"":[2,1]}},
+                {"type":"LINK","join":["przep@","JAL#przep"],
+                "horizontal":true, "style":"Flat", "signals":"przep"}
+
+                    ]
+
+                },{"type":"LABEL","name":"wyak","pos":[500,175],
+                "text":"wyak","signals":"wyak", "nodes":{"":[1,2]}},
+                {"type":"NODE","name":"wyak","pos":[600,250]},
+                 {"type":"LINK","join":["JAL#wyak","$wyak"],
+                "horizontal":true, "style":"None", "signals":"wyak"},
+                {"type":"NODE","name":"wyak2","pos":[525,250]},
+                 {"type":"LINK","join":["wyak@","$wyak2"],
+                "horizontal":false, "style":"Flat", "signals":"wyak"},
+                {"type":"NODE","name":"wyak_","pos":[600,600]},
+                 {"type":"LINK","join":["$wyak","$wyak_"],
+                "horizontal":false, "style":"Arrow", "signals":"wyak"},
+                {"type":"BLOCK","name":"AK","pos":[350,300],
+                 "size":[200,40]},
+                {"type":"LABEL","name":"AK","pos":[360,300],"text":"AK:"},
+                {"type":"FIELD","name":"AK","pos":[425,300],"hook":"AK"}
+
+            ]
+        },{"type":"SECTION","name":"RAM","pos":[600,25],
+            "objects":[
+                {"type":"SECTION","name":"RAM_CELLS","pos":[0,0],
+                "objects":[
+                    {"type":"BLOCK","name":"RAM", "pos":[100,100],"size":[250,400],
+                    "nodes":{"czyt":[250,150],"pisz":[250,250]}
+                    },{"type":"LIST","name":"cells","pos":[150,140],"size":[0,-1],
+                        "length":10,"hook":"RAM","selector":"RAM#A","signals":["czyt","pisz","wea"]
+                    }
+                ]
+                },{"type":"BLOCK","name":"A", "pos":[100,100],"size":[250,40],
+                    "nodes":{"wea":[100,0],"wya":[150,0]}
+                },{"type":"LABEL","name":"A","pos":[110,100], "text":"A:"
+                },{"type":"FIELD","name":"A","pos":[200,100], "hook":"RAM#A"
+                },
+
+                {"type":"BLOCK","name":"S", "pos":[100,460],"size":[250,40],
+                    "nodes":{"wes":[100,40],"wys":[150,40]}
+                },{"type":"LABEL","name":"S","pos":[110,460], "text":"S:"
+                },{"type":"FIELD","name":"S","pos":[200,460], "hook":"RAM#S"
+                },
+
+                 {"type":"SECTION","name":"czytpisz","pos":[400,225],
+                 "objects":[
+                 {"type":"LABEL","name":"czyt","pos":[0,0], "text":"czyt", "signals":"czyt","nodes":{"":[0,1]}
+                 },{"type":"LABEL","name":"pisz","pos":[0,100], "text":"pisz", "signals":"pisz","nodes":{"":[0,1]}
+                 },{"type":"LINK","join":["czyt@","RAM#czyt"],"signals":"czyt", "style":"Flat","horizontal":true},
+                 {"type":"LINK","join":["pisz@","RAM#pisz"],"signals":"pisz", "style":"Pulse","horizontal":true}
+                 ]},
+                {"type":"SECTION","name":"RAM_SIG_S","pos":[0,-25],
+                "objects":[
+                    {"type":"LABEL","name":"wes","text":"wes","pos":[100,550],
+                    "nodes":{"":[2,1]},"signals":"wes"},
+                    {"type":"NODE","name":"wes","pos":[200,570]},
+                    {"type":"LINK","join":["wes@","$wes"],"signals":"wes", "style":"Pulse","horizontal":true},
+
+                    {"type":"LABEL","name":"wys","text":"wys","pos":[300,550],
+                    "nodes":{"":[0,1]},"signals":"wys"},
+                    {"type":"NODE","name":"wys","pos":[255,570]},
+                    {"type":"LINK","join":["wys@","$wys"],"signals":"wys", "style":"Flat","horizontal":true},
+
+                    {"type":"NODE","name":"wes_","pos":[200,600]},
+                    {"type":"NODE","name":"wys_","pos":[250,600]},
+                    {"type":"LINK","join":["$wes_","S#wes"],"signals":"wes", "style":"Arrow","horizontal":false},
+                    {"type":"LINK","join":["S#wys", "$wys_"],"signals":"wys", "style":"Arrow","horizontal":false}
+
+                ]},
+                {"type":"SECTION","name":"RAM_SIG_A","pos":[0,0],
+                "objects":[
+                    {"type":"LABEL","name":"wea","text":"wea","pos":[100,38],
+                    "nodes":{"":[2,1]},"signals":"wea"},
+                    {"type":"NODE","name":"wea","pos":[200,60]},
+                    {"type":"LINK","join":["wea@","$wea"],"signals":"wea", "style":"Pulse","horizontal":true},
+
+                    {"type":"LABEL","name":"wya","text":"wya","pos":[300,38],
+                    "nodes":{"":[0,1]},"signals":"wya"},
+                    {"type":"NODE","name":"wya","pos":[255,60]},
+                    {"type":"LINK","join":["wya@","$wya"],"signals":"wya", "style":"Flat","horizontal":true},
+
+                    {"type":"NODE","name":"wea_","pos":[200,25]},
+                    {"type":"NODE","name":"wya_","pos":[250,25]},
+                    {"type":"LINK","join":["$wea_","A#wea"],"signals":"wea", "style":"Arrow","horizontal":false},
+                    {"type":"LINK","join":["A#wya", "$wya_"],"signals":"wya", "style":"Arrow","horizontal":false}
+
+                ]}
+
+            ]
+        },{"type":"SECTION","name":"STOP","pos":[-10,0],
+            "objects":[
+            {"type":"LABEL","name":"stop","pos":[25,300], "text":"stop","signals":"stop","nodes":{"":[2,1]}},
+            {"type":"NODE","name":"stop","pos":[100,324]},
+            {"type":"LINK","join":["stop@","$stop"], "signals":"stop", "horizontal":true,"style":"Flat"}
+
+           ]
+
+        }
+
+        ]
+    }
+],
+"machine":{
+    "name":"MaszynaW",
+    "bits":{
+        "_comment1":"bit code oznacza ilość bitów na kod instrukcji",
+        "_comment2":"bit data oznacza ilość bitów na adres",
+        "code":3,
+        "data":5
+    },
+    "elements": [
+            {
+                "type": "BUS",
+                "name": "magA",
+                "width": "data"
+            },
+            {
+                "type": "BUS",
+                "name": "magS"
+            },
+            {
+                "type":"COUNTER",
+                "name":"L",
+                "width":"data",
+                "calls":{
+                    "pulse":{
+                        "il":0
+                    }
+                }
+            },
+            {
+                "type":"ALU",
+                "name":"AK",
+                "width":"full",
+                "calls":{
+                    "flat":{
+                        "dod":0,
+                        "ode":1,
+                        "przep":2,
+                        "weja":3
+                    }
+                }
+
+            },
+            {
+                "type":"RAM",
+                "name":"RAM",
+                "width":"full",
+                "addr-width": "data",
+                "calls":{
+                    "flat":{
+                        "czyt":0
+                    },
+                    "pulse":{
+                        "pisz":1
+                    }
+                }
+            }
+
+    ],
+    "connections":{
+        	"pulse":[
+            	{"signal":"wea","join":["magA","RAM#A"]},
+            	{"signal":"wel","join":["magA","L"]},
+            	{"signal":"wes","join":["magS","RAM#S"]},
+            	{"signal":"weak","join":["magS","AK"]},
+            	{"signal":"wei","join":["magS","I"]}
+        	],
+        	"flat":[
+            	{"signal":"wyl","join":["L", "magA"]},
+            	{"signal":"wys","join":["RAM#S","magS"]},
+            	{"signal":"wyad","join":["I", "magA"]},
+	            {"signal":"wya","join":["RAM#A","magA"]},
+            	{"signal":"wyak","join":["AK","magS"]}
+			]
+    },
+    "instructions":[
+        "rzk/stp.rzk",
+        "rzk/dod.rzk",
+        "rzk/ode.rzk",
+        "rzk/pob.rzk",
+        "rzk/lad.rzk",
+        "rzk/sob.rzk",
+        "rzk/som.rzk",
+        "rzk/soz.rzk"
+    ]
+
+    }
+}

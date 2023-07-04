@@ -1,0 +1,147 @@
+{
+"include":{
+    "file":"conf/w_base",
+    "sections":{
+        
+    }
+},
+"objects":[
+    {"type":"SECTION","name":"buses_extend",
+        "pos":[0,-100],
+        "objects":[
+            { "type":"BLOCK","name":"busAe",
+                "size":[1500,0],
+                "pos":[0,50],
+                "nodes":{"wej_d":[0,0]},
+                "signals":["wyl","wea","wyad"]
+            },
+            { "type":"BLOCK","name":"busSe",
+                "size":[1500,0],
+                "pos":[0,600],
+                "signals":[
+                    "wys",
+                    "wyak",
+                    "rwys"
+                ]
+            }                
+        ]
+    },{"type":"SECTION","name":"ROM","pos":[1000,-75],
+        "objects":[
+            {"type":"SECTION","name":"ROM_CELLS","pos":[0,0],
+            "objects":[
+                {"type":"BLOCK","name":"ROM", "pos":[100,100],"size":[250,400],"color":[150,150,150],
+                "nodes":{"rczyt":[250,150],"pisz":[250,250]}
+                },{"type":"LIST","name":"romcells","pos":[200,140],"size":[0,32],
+                    "length":10,"hook":"ROM","selector":"ROM#A","signals":["rczyt","rwea"]
+                },{"type":"LABEL","name":"ROM","text":"ROM","pos":[125, 275]}
+            ]
+            },{"type":"BLOCK","name":"rA", "pos":[100,100],"size":[250,40],"color":[150,150,150],
+                "nodes":{"rwea":[100,0],"rwya":[150,0]}
+            },{"type":"LABEL","name":"rA","pos":[110,100], "text":"A:"
+            },{"type":"FIELD","name":"rA","pos":[250,100], "hook":"ROM#A"
+            },
+            
+            {"type":"BLOCK","name":"rS", "pos":[100,460],"size":[250,40],"color":[150,150,150],
+                "nodes":{"rwes":[100,40],"rwys":[150,40]}
+            },{"type":"LABEL","name":"rS","pos":[110,460], "text":"S:"
+            },{"type":"FIELD","name":"rS","pos":[250,460], "hook":"ROM#S"
+            },
+            
+                {"type":"SECTION","name":"romczytpisz","pos":[400,225],
+                "objects":[
+                {"type":"LABEL","name":"rczyt","pos":[0,0], "text":"rczyt", "signals":"rczyt","nodes":{"":[0,1]}
+                },{"type":"LINK","join":["rczyt@","ROM#rczyt"],"signals":"rczyt", "style":"Flat","horizontal":true}
+                ]},
+            {"type":"SECTION","name":"ROM_SIG_S","pos":[0,-25],
+            "objects":[
+                {"type":"LABEL","name":"rwes","text":"rwes","pos":[100,550],
+                "nodes":{"":[2,1]},"signals":"rwes"},
+                {"type":"NODE","name":"rwes","pos":[200,570]},
+                {"type":"LINK","join":["rwes@","$rwes"],"signals":"rwes", "style":"Pulse","horizontal":true},
+                
+                {"type":"LABEL","name":"rwys","text":"rwys","pos":[300,550],
+                "nodes":{"":[0,1]},"signals":"rwys"},
+                {"type":"NODE","name":"rwys","pos":[255,570]},
+                {"type":"LINK","join":["rwys@","$rwys"],"signals":"rwys", "style":"Flat","horizontal":true},
+                
+                {"type":"NODE","name":"rwes_","pos":[200,600]},
+                {"type":"NODE","name":"rwys_","pos":[250,600]},
+                {"type":"LINK","join":["$rwes_","rS#rwes"],"signals":"rwes", "style":"Arrow","horizontal":false},
+                {"type":"LINK","join":["rS#rwys", "$rwys_"],"signals":"rwys", "style":"Arrow","horizontal":false}
+                
+            ]},
+            {"type":"SECTION","name":"ROM_SIG_A","pos":[0,0],
+            "objects":[
+                {"type":"LABEL","name":"rwea","text":"rwea","pos":[100,38],
+                "nodes":{"":[2,1]},"signals":"rwea"},
+                {"type":"NODE","name":"rwea","pos":[200,60]},
+                {"type":"LINK","join":["rwea@","$rwea"],"signals":"rwea", "style":"Pulse","horizontal":true},
+                
+                {"type":"LABEL","name":"rwya","text":"rwya","pos":[300,38],
+                "nodes":{"":[0,1]},"signals":"rwya"},
+                {"type":"NODE","name":"rwya","pos":[255,60]},
+                {"type":"LINK","join":["rwya@","$rwya"],"signals":"rwya", "style":"Flat","horizontal":true},
+                
+                {"type":"NODE","name":"rwea_","pos":[200,25]},
+                {"type":"NODE","name":"rwya_","pos":[250,25]},
+                {"type":"LINK","join":["$rwea_","rA#rwea"],"signals":"rwea", "style":"Arrow","horizontal":false},
+                {"type":"LINK","join":["rA#rwya", "$rwya_"],"signals":"rwya", "style":"Arrow","horizontal":false}
+                
+            ]}
+        
+        ]
+    }
+        
+],
+"machine":{
+    "name":"Dual memory",
+    "bits":{
+        "_comment1":"bit code oznacza ilość bitów na kod instrukcji",
+        "_comment2":"bit data oznacza ilość bitów na adres",
+        "code":4,
+        "data":5
+    },
+    "elements":
+    [
+        {
+            "type":"RAM",
+            "name":"ROM",
+            "width":"full",
+            "addr-width": "data",
+            "calls":{
+                "flat":{
+                    "rczyt":0
+                }
+            }
+        }
+    ],
+    "connections":{
+        	"pulse":[
+            	{"signal":"rwea","join":["magA","ROM#A"]},
+            	{"signal":"rwes","join":["magS","ROM#S"]}
+        	],
+        	"flat":[
+            	{"signal":"rwys","join":["ROM#S","magS"]},
+	            {"signal":"rwya","join":["ROM#A","magA"]}
+			]
+    },
+    
+    
+    "instructions":[
+            "rzk/stp.rzk",
+            "rzk/dod.rzk",
+            "rzk/ode.rzk",
+            "rzk/pob.rzk",
+            "rzk/lad.rzk",
+            "rzk/sob.rzk",
+            "rzk/som.rzk",
+            "rzk/soz.rzk",
+            "rzk/rpob.rzk"
+        ]
+        
+    }
+
+
+
+
+}

@@ -1,0 +1,6 @@
+// skok gdy (Ak)=0
+ROZKAZ SOZ;
+czyt wys wei il;
+JEZELI zak TO @zero GDY NIE @niezero;
+@zero wyad wea wel KONIEC;
+@niezero wyl wea;

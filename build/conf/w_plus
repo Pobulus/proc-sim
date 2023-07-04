@@ -1,0 +1,152 @@
+{
+"include":{
+    "file":"conf/w_base",
+    "sections":{
+        "buses":[-100,0],
+        "licznik":[-200,0],
+        "REJ_I":[-150,0],
+        "wyad_node":
+        [-150,0],
+        "STOP":[-50,-25],
+        
+        "root":[0,0],
+        "JAL":[-50,0]
+    }
+},
+"objects":[
+    {
+        "type":"SECTION",
+        "name":"wyls", "pos":[0,0],
+        "objects":[
+            {"type":"LABEL","name":"wyls",
+             "pos":[-25,100],"text":"wyls",
+             "signals":"wyls","nodes":{"":[0,1]}
+             },
+            {"type":"NODE", "name":"wyls_", "pos":[-75,500]},
+            {"type":"NODE", "name":"wyls", "pos":[-75,125]},
+            {"type":"LINK", "join":["L#wyls","$wyls_"], 
+            "horizontal":false, "signals":"wyls", "style":"Arrow" },
+            
+            {"type":"LINK", "join":["wyls@","$wyls"], 
+            "horizontal":true, "signals":"wyls", "style":"Flat" }
+        ]
+    },{
+        "type":"SECTION",
+        "name":"mag2mag", "pos":[200,-50],
+        "objects":[
+            {"type":"LABEL","name":"as",
+             "pos":[25,125],"text":"as(sa)",
+             "signals":["as", "sa"]
+             },
+            {"type":"NODE", "name":"AS", "pos":[0,0]},
+            {"type":"NODE", "name":"SA", "pos":[0,550]},
+            {"type":"LINK", "join":["$AS","$SA"], 
+            "horizontal":false, "signals":["as", "sa"], "style":"None" }
+        ]
+    },{"type":"SECTION","name":"stos",
+          "pos":[300,-100],
+          "objects":[
+            {"type":"BLOCK","name":"WS",
+             "pos":[100,100], "size":[150,40],
+              "nodes":{
+                "wews":[25,0],
+                "wyws":[125,0],
+                "iws": [0,20],
+                "dws": [150,20]                
+                }
+             },
+            {"type":"LABEL","name":"WS",
+             "pos":[110,100],"text":"WS:"
+             },
+            {"type":"FIELD","name":"WS",
+             "pos":[150,100],"hook":"WS"            
+            },
+            {"type":"LABEL","name":"wews",
+             "pos":[0,50],"text":"wews",
+             "signals":"wews", "nodes":{"":[2,1]}	
+             },
+            {"type":"LABEL","name":"wyws",
+             "pos":[275,50],"text":"wyws",
+                "signals":"wyws","nodes":{"":[0,1]} 
+             },
+              {"type":"LABEL","name":"iws",
+             "pos":[10,100],"text":"iws",
+                "signals":"iws","nodes":{"":[2,1]}
+             },
+              {"type":"LABEL","name":"dws",
+             "pos":[300,100],"text":"dws",
+                "signals":"dws","nodes":{"":[0,1]}
+             },
+            {"type":"NODE","name":"wews_","pos":[125,50]},
+             {"type":"NODE","name":"wyws_","pos":[225,50]},
+            {"type":"NODE","name":"wews","pos":[125,70]},
+             {"type":"NODE","name":"wyws","pos":[225,70]},
+            {"type":"LINK","join":["iws@", "WS#iws"],
+             "horizontal":true,"style":"Pulse","signals":"iws"},                     
+            {"type":"LINK","join":["dws@", "WS#dws"],
+             "horizontal":true,"style":"Pulse","signals":"dws"},                     
+            {"type":"LINK","join":["$wews_", "WS#wews"],
+             "horizontal":false, "style":"Arrow","signals":"wews"},
+            {"type":"LINK","join":["WS#wyws", "$wyws_"],
+             "horizontal":false, "style":"Arrow","signals":"wyws"},
+            {"type":"LINK","join":["wews@", "$wews"],
+             "horizontal":true, "style":"Arrow","signals":"wews"},
+            {"type":"LINK","join":["wyws@", "$wyws"],
+             "horizontal":true, "style":"Arrow","signals":"wyws"}           
+          ]
+        }
+],
+"machine":{
+    "name":"W Plus",
+    "bits":{
+        "_comment1":"bit code oznacza ilość bitów na kod instrukcji",
+        "_comment2":"bit data oznacza ilość bitów na adres",
+        "code":4,
+        "data":5
+    },
+    "connections":{
+            "flat":[
+                {"signal":"wyws","join":["WS", "magA"]},
+                {"signal":"wyls","join":["L", "magS"]}
+            ],
+        	"1":[
+            	{"signal":"as","join":["magA", "magS"]},
+            	{"signal":"sa","join":["magS", "magA"]}
+            ],
+            "pulse":[{"signal":"wews","join":["magA", "WS"]}]
+    },
+    "elements":[
+        {
+            "type":"COUNTER",
+            "name":"WS",
+            "width":"data",
+            "calls":{
+                "pulse":{
+                    "iws":0,
+                    "dws":1
+                }
+            }
+        }
+    ],
+    "instructions":[
+        "rzk/stp.rzk",
+        "rzk/dod.rzk",
+        "rzk/ode.rzk",
+        "rzk/pob.rzk",
+        "rzk/lad.rzk",
+        "rzk/sob.rzk",
+        "rzk/som.rzk",
+        "rzk/soz.rzk",
+        "rzk/dns.rzk",
+        "rzk/pwr.rzk",
+        "rzk/pzs.rzk",
+        "rzk/sdp.rzk"
+    ]
+
+
+    }
+
+
+
+
+}
